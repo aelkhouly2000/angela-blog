@@ -12,6 +12,7 @@ from sqlalchemy import Table, Column, Integer, String, Date, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from functools import wraps
+import os
 
 # Create admin_only decorator
 def admin_only(f):
@@ -28,7 +29,7 @@ def admin_only(f):
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get("APP_SECRET")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 # To make an image
